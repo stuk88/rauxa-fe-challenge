@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import GitHub from 'github-api';
-
 import './App.css';
 
 
@@ -15,12 +13,6 @@ class App extends Component {
         results: []
     };
 
-
-    this.github = new GitHub(/*{
-      token: "OAUTH_TOKEN",
-      auth: "oauth"
-    }*/);
-
   }
 
   handleUserTyped = (e) => {
@@ -29,8 +21,11 @@ class App extends Component {
 
   searchGithub = async () => {
     try {
-      var user = await fetch(`https://api.github.com/users/${this.state.user}`);
-      var followers = await fetch(`https://api.github.com/users/${this.state.user}/followers`);
+      var user_req = await fetch(`https://api.github.com/users/${this.state.user}`);
+      var user = await user_req.json();
+      var followers_req = await fetch(`https://api.github.com/users/${this.state.user}/followers`);
+      var followers = await followers_req.json();
+
     
       this.setState({
         gh_user_handle: user,
