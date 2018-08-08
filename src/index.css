@@ -12,6 +12,10 @@ body {
     text-align: center;
 }
 
+.followers h3 {
+	flex: 0 0 100%;
+}
+
 .follower {
 	display: flex;
 	flex-direction: column;
@@ -24,7 +28,7 @@ body {
 	width: 150px;
     border-radius: 5px;
     overflow: hidden;
-    margin: 10
+    margin: 10px;
 }
 
 

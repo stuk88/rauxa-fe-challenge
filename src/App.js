@@ -66,12 +66,12 @@ class App extends Component {
       <div className="App">
         <header className="App-header">
           <h1 className="App-title">Github Search</h1>
-        </header>
-        <div className="App-intro">
           <form onSubmit={this.searchGithub}>
             <input type="text" value={this.state.username} onChange={this.handleUserTyped} /> 
             <input type="button" value="Search" onClick={this.searchGithub} /> 
           </form>
+        </header>
+        <div className="continaer info">
           {this.state.pending && 
             <div>Searching ...</div>
           }
