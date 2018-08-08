@@ -7,13 +7,14 @@ body {
 .followers {
 	display: flex;
 	flex-direction: row;
-    width: 500px;
+     width: 550px;
     margin: 0 auto;
     text-align: center;
+     flex-wrap: wrap;
 }
 
 .followers h3 {
-	flex: 0 0 100%;
+      min-width: 100%;	
 }
 
 .follower {
@@ -27,7 +28,6 @@ body {
 	font-size: 18px;
 	width: 150px;
     border-radius: 5px;
-    overflow: hidden;
     margin: 10px;
 }
 
@@ -40,4 +40,6 @@ body {
 .follower a {
     color: #212121;
     text-decoration: none;
+     overflow: hidden;
+    border-radius: 5px;
 }

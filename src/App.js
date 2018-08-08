@@ -41,6 +41,9 @@ class App extends Component {
 
     try {
       var user_req = await fetch(`https://api.github.com/users/${this.state.username}`);
+      if(!user_req.ok)
+        throw new Error("user not found");
+      
       var user = await user_req.json();
       var followers_req = await fetch(`https://api.github.com/users/${this.state.username}/followers`);
       var followers = await followers_req.json();
