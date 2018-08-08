@@ -26,10 +26,6 @@ class GitUser extends Component {
     };
   }
 
-  componentDidUpdate() {
-  	this.searchGithub(this.props.username);
-  }
-
   componentDidMount() {
   	this.searchGithub(this.props.username);
   }
@@ -68,28 +64,27 @@ class GitUser extends Component {
   render() {
 		return (
 			<div className="continaer info">
-	          {this.state.pending && 
-	            <div>Searching ...</div>
-	          }
-	          {this.state.hasResults && 
+	        	{this.state.pending && 
+	            	<div>Searching ...</div>
+	        	}
+	        	{this.state.hasResults && 
 	            <div className="results">
-	                <h2>User: {this.state.user.login} Followers: {this.state.user.followers}</h2>
-	              <a href={this.state.user.url} target="_blank">
-	                <img style={{width:'150px',height: '150px'}} src={this.state.user.avatar_url} />
-	              </a>
-	              {this.state.followers.length > 0 &&
-	                <div className="followers">
-	                  <h3>Followers</h3>
-	                  {this.state.followers.map((follower, i) => <Follower user={follower} key={i} />)}
-	                </div>
-	              }
+                	<h2>User: {this.state.user.login} Followers: {this.state.user.followers}</h2>
+					<a href={this.state.user.url} target="_blank">
+						<img style={{width:'150px',height: '150px'}} src={this.state.user.avatar_url} />
+					</a>
+					{this.state.followers.length > 0 &&
+						<div className="followers">
+						  <h3>Followers</h3>
+						  {this.state.followers.map((follower, i) => <Follower user={follower} key={i} />)}
+						</div>
+					}
 	            </div>
-
-	            ||
-	              this.state.searched && <div>No results found</div>
-	          }
-	        </div>
-        );
+            	||
+	        		this.state.searched && <div>No results found</div>
+				}
+        	</div>
+    	);
   }
 }
 
