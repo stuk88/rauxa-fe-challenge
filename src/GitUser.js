@@ -100,11 +100,13 @@ class GitUser extends Component {
 									<img style={{width:'150px',height: '150px'}} src={this.state.user.avatar_url} />
 								</a>
 								{this.state.followers.length > 0 &&
-									<div className="followers">
-										<h3>Followers</h3>
-										{this.state.followers.map((follower, i) => <Follower user={follower} key={i} />)}
+									<div className="followers-container">
+										<div className="followers">
+											<h3>Followers</h3>
+											{this.state.followers.map((follower, i) => <Follower user={follower} key={i} />)}
+										</div>
+										<div className="load-more" onClick={this.loadMoreFollowers}>Load More</div>
 									</div>
-									<div className="load-more" onClick={this.loadMoreFollowers}>Load More</div>
 								}
 							</div>
 						||
