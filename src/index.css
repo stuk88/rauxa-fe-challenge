@@ -4,6 +4,15 @@ body {
   font-family: sans-serif;
 }
 
+.load-more {
+	display: block;
+	background: black;
+	color: #fff;
+	border-radius: 5px;
+	padding: 5px 10px;
+	margin: 0 auto;
+}
+
 .followers {
 	display: flex;
 	flex-direction: row;
