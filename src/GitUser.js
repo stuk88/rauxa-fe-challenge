@@ -26,11 +26,20 @@ class GitUser extends Component {
     };
   }
 
+  componentDidUpdate(prevProps) {
+     if (prevProps.username !== this.props.username) {
+  		this.searchGithub(this.props.username);
+     }
+   }
+
   componentDidMount() {
   	this.searchGithub(this.props.username);
   }
 
   searchGithub = async (username) => {
+
+  	if(this.state.user.login == username)
+  		return;
 
     this.setState({
       pending: true
