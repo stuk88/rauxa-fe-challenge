@@ -68,9 +68,7 @@ class App extends Component {
               </a>
               {this.state.followers.length > 0 &&
                 <div className="followers">
-                  {this.state.followers.map((follower) => {
-                      <Follower user={follower} />
-                  })}
+                  {this.state.followers.map((follower) => <Follower user={follower} />)}
                 </div>
               }
             </div>
