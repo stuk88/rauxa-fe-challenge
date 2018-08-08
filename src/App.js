@@ -3,11 +3,13 @@ import './App.css';
 
 const Follower = ({user}) => {
   return (
+    <div className="follower">
           <a href={user.url} target="_blank">
-              {user.login} 
               <img style={{width:'150px',height: '150px'}} src={user.avatar_url} />
+              {user.login} 
             </a>
-    )
+    </div>
+  )
 }
 
 class App extends Component {
@@ -28,7 +30,8 @@ class App extends Component {
     this.setState({username: e.target.value});
   }
 
-  searchGithub = async () => {
+  searchGithub = async (e) => {
+    e.preventDefault();
     try {
       var user_req = await fetch(`https://api.github.com/users/${this.state.username}`);
       var user = await user_req.json();
@@ -68,7 +71,9 @@ class App extends Component {
               </a>
               {this.state.followers.length > 0 &&
                 <div className="followers">
-                  {this.state.followers.map((follower) => <Follower user={follower} />)}
+                  {this.state.followers.map((follower, i) => {
+                      <Follower user={follower} key={i} />
+                  })}
                 </div>
               }
             </div>
