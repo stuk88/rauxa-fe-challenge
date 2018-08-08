@@ -70,7 +70,7 @@ class App extends Component {
         <div className="App-intro">
           <form onSubmit={this.searchGithub}>
             <input type="text" value={this.state.username} onChange={this.handleUserTyped} /> 
-            <input type="button" value="Send" onClick={this.searchGithub} /> 
+            <input type="button" value="Search" onClick={this.searchGithub} /> 
           </form>
           {this.state.pending && 
             <div>Searching</div>
@@ -83,9 +83,7 @@ class App extends Component {
               </a>
               {this.state.followers.length > 0 &&
                 <div className="followers">
-                  {this.state.followers.map((follower, i) => {
-                      <Follower user={follower} key={i} />
-                  })}
+                  {this.state.followers.map((follower, i) => <Follower user={follower} key={i} />)}
                 </div>
               }
             </div>
