@@ -91,7 +91,7 @@ class App extends Component {
             </div>
 
             ||
-              <div>No results found</div>
+              this.state.searched && <div>No results found</div>
           }
         </div>
       </div>
