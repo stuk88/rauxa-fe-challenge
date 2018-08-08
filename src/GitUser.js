@@ -75,7 +75,7 @@ class GitUser extends Component {
 		});
 
 		try {
-			var followers_url = `https://api.github.com/users/${username}/followers?page=${this.state.page}`;
+			var followers_url = `https://api.github.com/users/${this.props.username}/followers?page=${this.state.page}`;
 
 			var followers_req = await fetch(followers_url);
 			var followers = await followers_req.json();
