@@ -1,16 +1,7 @@
 import React, { Component } from 'react';
+import GitUser from './GitUser';
 import './App.css';
 
-const Follower = ({user}) => {
-  return (
-    <div className="follower">
-          <a href={user.url} target="_blank">
-              <img style={{width:'150px',height: '150px'}} src={user.avatar_url} />
-              {user.login} 
-            </a>
-    </div>
-  )
-}
 
 class App extends Component {
 
@@ -19,10 +10,6 @@ class App extends Component {
     super(props);
     this.state = {
         username: '',
-        user: null,
-        followers: null,
-        hasResults: false,
-        pending: false,
         searched: false
     };
 
@@ -35,32 +22,9 @@ class App extends Component {
   searchGithub = async (e) => {
     e.preventDefault();
 
-    this.setState({
-      pending: true
-    });
-
-    try {
-      var user_req = await fetch(`https://api.github.com/users/${this.state.username}`);
-      if(!user_req.ok)
-        throw new Error("user not found");
-      
-      var user = await user_req.json();
-      var followers_req = await fetch(`https://api.github.com/users/${this.state.username}/followers`);
-      var followers = await followers_req.json();
-    
       this.setState({
-        user,
-        followers,
-        hasResults: true,
-        searched: true,
-        pending: false
+        searched: true
       });
-    } catch(e) {
-      console.log(e);
-      this.setState({
-        hasResults: false
-      })
-    }
 
   }
 
@@ -74,28 +38,9 @@ class App extends Component {
             <input type="button" value="Search" onClick={this.searchGithub} /> 
           </form>
         </header>
-        <div className="continaer info">
-          {this.state.pending && 
-            <div>Searching ...</div>
-          }
-          {this.state.hasResults && 
-            <div className="results">
-                <h2>User: {this.state.user.login} Followers: {this.state.user.followers}</h2>
-              <a href={this.state.user.url} target="_blank">
-                <img style={{width:'150px',height: '150px'}} src={this.state.user.avatar_url} />
-              </a>
-              {this.state.followers.length > 0 &&
-                <div className="followers">
-                  <h3>Followers</h3>
-                  {this.state.followers.map((follower, i) => <Follower user={follower} key={i} />)}
-                </div>
-              }
-            </div>
-
-            ||
-              this.state.searched && <div>No results found</div>
-          }
-        </div>
+        {this.state.searched && 
+          <GitUser username={this.state.username} />
+        }
       </div>
     );
   }
