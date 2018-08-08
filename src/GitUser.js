@@ -38,7 +38,7 @@ class GitUser extends Component {
 
   searchGithub = async (username) => {
 
-  	if(this.state.user.login == username)
+  	if(username != "" && this.state.user != null && this.state.user.login == username)
   		return;
 
     this.setState({
