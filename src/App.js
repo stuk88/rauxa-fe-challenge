@@ -57,7 +57,7 @@ class App extends Component {
         </header>
         <div className="App-intro">
           <form onSubmit={this.searchGithub}>
-            <input type="text" value={this.state.user} onChange={this.handleUserTyped} /> 
+            <input type="text" value={this.state.username} onChange={this.handleUserTyped} /> 
             <input type="button" value="Send" onClick={this.searchGithub} /> 
           </form>
           {this.state.hasResults && 
