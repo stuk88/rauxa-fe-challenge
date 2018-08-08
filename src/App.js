@@ -21,7 +21,9 @@ class App extends Component {
         username: '',
         user: null,
         followers: null,
-        hasResults: false
+        hasResults: false,
+        pending: false,
+        searched: false
     };
 
   }
@@ -32,6 +34,11 @@ class App extends Component {
 
   searchGithub = async (e) => {
     e.preventDefault();
+
+    this.setState({
+      pending: true
+    });
+
     try {
       var user_req = await fetch(`https://api.github.com/users/${this.state.username}`);
       var user = await user_req.json();
@@ -41,7 +48,9 @@ class App extends Component {
       this.setState({
         user,
         followers,
-        hasResults: true
+        hasResults: true,
+        searched: true,
+        pending: false
       });
     } catch(e) {
       console.log(e);
@@ -63,6 +72,9 @@ class App extends Component {
             <input type="text" value={this.state.username} onChange={this.handleUserTyped} /> 
             <input type="button" value="Send" onClick={this.searchGithub} /> 
           </form>
+          {this.state.pending && 
+            <div>Searching</div>
+          }
           {this.state.hasResults && 
             <div className="results">
                 User: {this.state.user.login} Followers: {this.state.user.followers}<br/>
@@ -77,6 +89,9 @@ class App extends Component {
                 </div>
               }
             </div>
+
+            ||
+              <div>No results found</div>
           }
         </div>
       </div>
