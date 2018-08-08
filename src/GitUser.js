@@ -22,7 +22,8 @@ class GitUser extends Component {
 			hasResults: false,
 			pending: false,
 			searched: false,
-			page: 1
+			page: 1,
+			hasMorePages: false
 		};
 	}
 
@@ -57,7 +58,8 @@ class GitUser extends Component {
 				followers,
 				hasResults: true,
 				searched: true,
-				pending: false
+				pending: false,
+				hasMorePages: (followers.length == 30)
 			});
 		} catch(e) {
 			console.log(e);
@@ -82,7 +84,8 @@ class GitUser extends Component {
 
 			this.setState({
 				followers: [...this.state.followers, ...followers],
-				pending: false
+				pending: false,
+				hasMorePages: (followers.length == 30)
 			});
 		} catch(e) {
 			
@@ -105,7 +108,8 @@ class GitUser extends Component {
 											<h3>Followers</h3>
 											{this.state.followers.map((follower, i) => <Follower user={follower} key={i} />)}
 										</div>
-										<div className="load-more" onClick={this.loadMoreFollowers}>Load More</div>
+
+										<div className="load-more" onClick={this.loadMoreFollowers} style={{opacity: (this.state.hasMorePages && hasMorePages && !this.state.pending ? 1 : 0)}}>Load More</div>
 									</div>
 								}
 							</div>
