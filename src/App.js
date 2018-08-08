@@ -73,16 +73,17 @@ class App extends Component {
             <input type="button" value="Search" onClick={this.searchGithub} /> 
           </form>
           {this.state.pending && 
-            <div>Searching</div>
+            <div>Searching ...</div>
           }
           {this.state.hasResults && 
             <div className="results">
-                User: {this.state.user.login} Followers: {this.state.user.followers}<br/>
+                <h2>User: {this.state.user.login} Followers: {this.state.user.followers}</h2>
               <a href={this.state.user.url} target="_blank">
                 <img style={{width:'150px',height: '150px'}} src={this.state.user.avatar_url} />
               </a>
               {this.state.followers.length > 0 &&
                 <div className="followers">
+                  <h3>Followers</h3>
                   {this.state.followers.map((follower, i) => <Follower user={follower} key={i} />)}
                 </div>
               }

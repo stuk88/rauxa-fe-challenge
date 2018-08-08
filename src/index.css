@@ -6,7 +6,10 @@ body {
 
 .followers {
 	display: flex;
-	flex-direction: column;
+	flex-direction: row;
+    width: 500px;
+    margin: 0 auto;
+    text-align: center;
 }
 
 .follower {
@@ -18,4 +21,19 @@ body {
 	color: #212121;
 	line-height: 24px;
 	font-size: 18px;
+	width: 150px;
+    border-radius: 5px;
+    overflow: hidden;
+    margin: 10
+}
+
+
+.follower img {
+	display:block;
+}
+
+
+.follower a {
+    color: #212121;
+    text-decoration: none;
 }
