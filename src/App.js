@@ -1,6 +1,14 @@
 import React, { Component } from 'react';
 import './App.css';
 
+const Follower = ({user}) => {
+  return (
+          <a href={user.url} target="_blank">
+              {user.login} 
+              <img style={{width:'150px',height: '150px'}} src={user.avatar_url} />
+            </a>
+    )
+}
 
 class App extends Component {
 
@@ -39,15 +47,6 @@ class App extends Component {
       })
     }
 
-  } 
-
-  const Follower = (props) => {
-    return (
-            <a href={props.user.url} target="_blank">
-                {props.user.login} 
-                <img style={{width:'150px',height: '150px'}} src={props.user.avatar_url} />
-              </a>
-      )
   }
 
   render() {
