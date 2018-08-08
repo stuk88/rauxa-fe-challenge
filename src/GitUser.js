@@ -71,7 +71,7 @@ class GitUser extends Component {
 	loadMoreFollowers = async () => {
 		this.setState({
 			pending: true,
-			page: this.state.page+1
+			page: ++this.state.page
 		});
 
 		try {
@@ -81,7 +81,7 @@ class GitUser extends Component {
 			var followers = await followers_req.json();
 
 			this.setState({
-				followers: {...this.state.followers, ...followers},
+				followers: [...this.state.followers, ...followers],
 				pending: false
 			});
 		} catch(e) {
